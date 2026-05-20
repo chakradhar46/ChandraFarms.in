@@ -471,7 +471,7 @@ function submitForm(){
   const qt=document.getElementById('fQty').value;
   const ad=document.getElementById('fAddress').value.trim();
   if(!n||!ph||!pr||!qt||!ad){alert('Please fill in all fields before submitting.');return;}
-  const msg=encodeURIComponent(`Hello ChandraFarms! 🌿\n\n*New Order:*\n\n👤 ${n}\n📱 ${ph}\n📦 ${pr} — ${qt} kg\n📍 ${ad}\n\nPlease confirm. Thank you!`);
+  const msg=encodeURIComponent(`Hello ChandraFarms! 🌿\n\n*New Order:*\n\n👤${n}\n📱${ph}\n📦${pr} — ${qt} kg\n📍${ad}\n\nPlease confirm. Thank you!`);
   window.open(`https://wa.me/919391933343?text=${msg}`,'_blank');
 }
 
