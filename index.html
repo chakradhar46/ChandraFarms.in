@@ -376,8 +376,8 @@
 </section>
 
 <!-- ── REVIEW MODAL (Flipkart/Amazon style) ── -->
-<div class="rv-modal-backdrop" id="rvModalBackdrop" onclick="closeReviewModal(event)">
-  <div class="rv-modal" id="rvModal">
+<div class="rv-modal-backdrop" id="rvModalBackdrop" onclick="closeReviewModal(event)" style="position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:8000;display:none;align-items:center;justify-content:center;padding:20px;">
+  <div class="rv-modal" id="rvModal" style="background:#fff;border-radius:20px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,.3);position:relative;z-index:8001;">
 
     <div class="rv-modal-header">
       <h3>Rate &amp; Review</h3>
@@ -385,10 +385,10 @@
     </div>
 
     <!-- Step 1: Stars -->
-    <div class="rv-modal-step" id="rvStep1">
+    <div class="rv-modal-step" id="rvStep1" style="background:#ffffff;padding:28px;">
       <div class="rv-step-tag">Step 1 of 3</div>
       <p class="rv-step-q">How would you rate this product?</p>
-      <div class="rv-star-row" id="rvModalStars">
+      <div class="rv-star-row" id="rvModalStars" style="display:flex;gap:12px;margin-bottom:12px;background:transparent;">
         <span class="rv-star" data-val="1">★</span>
         <span class="rv-star" data-val="2">★</span>
         <span class="rv-star" data-val="3">★</span>
@@ -402,7 +402,7 @@
     </div>
 
     <!-- Step 2: Product & review text -->
-    <div class="rv-modal-step hidden" id="rvStep2">
+    <div class="rv-modal-step hidden" id="rvStep2" style="background:#ffffff;padding:28px;">
       <div class="rv-step-tag">Step 2 of 3</div>
       <p class="rv-step-q">Which product did you buy?</p>
       <div class="rv-product-chips" id="rvProductChips">
@@ -426,7 +426,7 @@
     </div>
 
     <!-- Step 3: Name & submit -->
-    <div class="rv-modal-step hidden" id="rvStep3">
+    <div class="rv-modal-step hidden" id="rvStep3" style="background:#ffffff;padding:28px;">
       <div class="rv-step-tag">Step 3 of 3</div>
       <p class="rv-step-q">Almost done! Tell us who you are</p>
       <div class="rv-field-row">
@@ -453,7 +453,7 @@
     </div>
 
     <!-- Success screen -->
-    <div class="rv-modal-step hidden" id="rvStepDone">
+    <div class="rv-modal-step hidden" id="rvStepDone" style="background:#ffffff;padding:28px;">
       <div class="rv-done-icon">🎉</div>
       <h3 class="rv-done-title">Thank You!</h3>
       <p class="rv-done-msg">Your review has been published. It means the world to our farming family!</p>
@@ -785,7 +785,7 @@ function rvLoadMore(){ rvVisible+=RV_PAGE; renderFeed(); }
 /* ── Modal (3-step wizard) ── */
 function openReviewModal(){
   rvRating=0;
-  document.getElementById('rvModalBackdrop').classList.add('open');
+  document.getElementById('rvModalBackdrop').style.display='flex'; document.getElementById('rvModalBackdrop').classList.add('open');
   document.body.style.overflow='hidden';
   showStep(1);
   // reset all fields
@@ -800,7 +800,7 @@ function openReviewModal(){
 
 function closeReviewModal(e){
   if(e && e.target!==document.getElementById('rvModalBackdrop')) return;
-  document.getElementById('rvModalBackdrop').classList.remove('open');
+  document.getElementById('rvModalBackdrop').style.display='none'; document.getElementById('rvModalBackdrop').classList.remove('open');
   document.body.style.overflow='';
 }
 
@@ -895,7 +895,7 @@ function initModalStars(){
     if(el) el.addEventListener('input',()=>{ if(!document.getElementById('rvStep3').classList.contains('hidden')) updatePreview(); });
   });
   // Escape key
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape') { document.getElementById('rvModalBackdrop').classList.remove('open'); document.body.style.overflow=''; } });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') { document.getElementById('rvModalBackdrop').style.display='none'; document.getElementById('rvModalBackdrop').classList.remove('open'); document.body.style.overflow=''; } });
 }
 
 // Expose globals
